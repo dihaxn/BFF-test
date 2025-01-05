@@ -1,0 +1,109 @@
+{  
+    "swagger": "2.0",  
+    "info": {  
+        "version": "1.0.0",  
+        "title": "BFF Layer API",  
+        "description": "API documentation for the BFF layer"  
+    },  
+    "host": "localhost:3000",  
+    "basePath": "/",  
+    "schemes": ["http"],  
+    "paths": {  
+        "/bff/user/save": {  
+            "post": {  
+                "summary": "Save a new user",  
+                "parameters": [  
+                    {  
+                        "in": "body",  
+                        "name": "body",  
+                        "required": true,  
+                        "schema": {  
+                            "$ref": "#/definitions/User"  
+                        }  
+                    }  
+                ],  
+                "responses": {  
+                    "201": {  
+                        "description": "User created successfully"  
+                    }  
+                }  
+            }  
+        },  
+        "/bff/user/get-all": {  
+            "get": {  
+                "summary": "Get all users",  
+                "responses": {  
+                    "200": {  
+                        "description": "List of users retrieved successfully"  
+                    }  
+                }  
+            }  
+        },  
+        "/bff/user/update-password/{userId}": {  
+            "put": {  
+                "summary": "Update user password",  
+                "parameters": [  
+                    {  
+                        "in": "path",  
+                        "name": "userId",  
+                        "required": true,  
+                        "type": "integer"  
+                    },  
+                    {  
+                        "in": "body",  
+                        "name": "body",  
+                        "required": true,  
+                        "schema": {  
+                            "type": "string"  
+                        }  
+                    }  
+                ],  
+                "responses": {  
+                    "200": {  
+                        "description": "Password updated successfully"  
+                    }  
+                }  
+            }  
+        },  
+        "/bff/user/deactivate/{userId}": {  
+            "delete": {  
+                "summary": "Deactivate a user",  
+                "parameters": [  
+                    {  
+                        "in": "path",  
+                        "name": "userId",  
+                        "required": true,  
+                        "type": "integer"  
+                    }  
+                ],  
+                "responses": {  
+                    "200": {  
+                        "description": "User deactivated successfully"  
+                    }  
+                }  
+            }  
+        }  
+    },  
+    "definitions": {  
+        "User": {  
+            "type": "object",  
+            "properties": {  
+                "userName": {  
+                    "type": "string"  
+                },  
+                "phoneNumber": {  
+                    "type": "string"  
+                },  
+                "password": {  
+                    "type": "string"  
+                },  
+                "userStatus": {  
+                    "type": "string"  
+                },  
+                "roleId": {  
+                    "type": "integer"  
+                }  
+            }  
+        }  
+    }  
+}
