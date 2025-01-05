@@ -51,7 +51,37 @@ app.delete('/bff/user/deactivate/:userId', async (req, res) => {
     } catch (error) {  
         res.status(error.response?.status || 500).json(error.response?.data || { message: 'Error occurred' });  
     }  
-});  
+});
+
+// Endpoint to save a new role
+app.post('/bff/role/save', async (req, res) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/role/save-role`, req.body);
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        res.status(error.response?.status || 500).json(error.response?.data || { message: 'Error occurred' });
+    }
+});
+
+// Endpoint to get all roles
+app.get('/bff/role/get-all', async (req, res) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/role/get-all-roles`);
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        res.status(error.response?.status || 500).json(error.response?.data || { message: 'Error occurred' });
+    }
+});
+
+// Endpoint to save a new permission
+app.post('/bff/permission/save', async (req, res) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/permission/save`, req.body);
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        res.status(error.response?.status || 500).json(error.response?.data || { message: 'Error occurred' });
+    }
+});
 
 // Start the server  
 app.listen(PORT, () => {  
