@@ -83,6 +83,15 @@ app.post('/bff/permission/save', async (req, res) => {
     }
 });
 
+app.post('/bff/user/get-user-with-permissions/:userId', async (req, res) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/user/get-user-with-permissions/${req.params.userId}`, req.body);
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        res.status(error.response?.status || 500).json(error.response?.data || { message: 'Error occurred' });
+    }
+});
+
 // Start the server  
 app.listen(PORT, () => {  
     console.log(`BFF layer running on http://localhost:${PORT}`);  
